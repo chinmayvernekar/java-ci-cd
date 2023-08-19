@@ -48,8 +48,11 @@ jobs:
         java -jar Java-CI-CD-Example-0.0.1-SNAPSHOT.jar &
         sleep 10
     
-    #- name: Test API
-      #run: python api.py
+    - name: Test API
+      #JAVA-CI-CD.postman_collection
+      run: |
+       npm install -g newman
+       newman run JAVA-CI-CD.postman_collection.json --environment JAVA-CI-CD.postman_collection.json
    
 
     - name: Save Maven dependencies
