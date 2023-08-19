@@ -12,7 +12,7 @@ public class JavaCiCdExampleApplication {
     	@GetMapping("hello") 
     	public Hello HELLO() {
     	    Hello hello = new Hello();
-    	    hello.setTest("HELLO WORLD");
+    	    hello.setTest("HELLO Chinmay");
     	    return hello;
     	}  
      
