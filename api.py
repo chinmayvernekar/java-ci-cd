@@ -9,11 +9,15 @@ try:
 
     # Check for successful response (status code 200)
     if response.status_code == 200:
-        try:
-            actual_response = response.json()
-            print("API Response:", actual_response)
-        except json.JSONDecodeError as e:
-            print("Error decoding JSON:", e)
+        # Check if the response content is not empty
+        if response.text:
+            try:
+                actual_response = response.json()
+                print("API Response:", actual_response)
+            except json.JSONDecodeError as e:
+                print("Error decoding JSON:", e)
+        else:
+            print("API response is empty.")
     else:
         print(f"API request failed with status code {response.status_code}")
 
