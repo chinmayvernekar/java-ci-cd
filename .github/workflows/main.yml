@@ -49,13 +49,8 @@ jobs:
         sleep 10
     
     - name: Test API
-      run: python .github/workflows/api.py
-        
-        # Compare the responses using jq and fail if they don't match
-        if [ "$EXPECTED_RESPONSE" != "$ACTUAL_RESPONSE" ]; then
-          echo "API response does not match the expected input."
-          exit 1
-        fi
+      run: python api.py
+   
 
     - name: Save Maven dependencies
       uses: actions/cache@v2
