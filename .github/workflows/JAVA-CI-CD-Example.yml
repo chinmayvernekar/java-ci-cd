@@ -40,20 +40,20 @@ jobs:
     - name: Run JAR File
       run: |
         # Navigate to the directory where the JAR file is located
-        cd ./downloaded-jar
-
-        ls -l
-        
+        cd ./downloaded-jar 
         # Run the JAR file (adjust the JAR file name as needed)
         java -jar Java-CI-CD-Example-0.0.1-SNAPSHOT.jar &
         sleep 10
     
-    - name: Test API
-      #JAVA-CI-CD.postman_collection
+
+    - name: Install Postman CLI
       run: |
-       npm install -g newman
-       newman run JAVA-CI-CD.postman_collection.json
-   
+          curl -o- "https://dl-cli.pstmn.io/install/linux64.sh" | sh
+    - name: Login to Postman CLI
+      run: postman login --with-api-key ${{ PMAK-64e09764e50ca70043515d3c-1c314df149262229d078a8e0ee5918d4a5 }}
+    - name: Run API tests
+      run: |
+          postman collection run "14992903-c59a8515-5f18-4e56-b56b-d9f08d453886"
 
     - name: Save Maven dependencies
       uses: actions/cache@v2
