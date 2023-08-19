@@ -52,7 +52,7 @@ jobs:
       #JAVA-CI-CD.postman_collection
       run: |
        npm install -g newman
-       newman run JAVA-CI-CD.postman_collection.json --environment JAVA-CI-CD.postman_collection.json
+       newman run JAVA-CI-CD.postman_collection.json
    
 
     - name: Save Maven dependencies
