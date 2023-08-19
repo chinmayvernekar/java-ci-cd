@@ -49,22 +49,7 @@ jobs:
         sleep 10
     
     - name: Test API
-      run: |
-        # Replace with your API endpoint URL (localhost:8080 or any other URL)
-        API_URL="http://localhost:8080/"
-        
-        # Replace with the expected JSON response as a string
-        EXPECTED_RESPONSE='{"test":"HELLO WORLD"}'
-        
-        # Make the API request and store the response in a variable
-        ACTUAL_RESPONSE=$(curl -sS $API_URL)
-        
-        # Use jq to pretty-print the responses for debugging (optional)
-        echo "Expected Response:"
-        echo $EXPECTED_RESPONSE | jq .
-        
-        echo "Actual Response:"
-        echo $ACTUAL_RESPONSE | jq .
+      run: python .github/workflows/api.py
         
         # Compare the responses using jq and fail if they don't match
         if [ "$EXPECTED_RESPONSE" != "$ACTUAL_RESPONSE" ]; then
