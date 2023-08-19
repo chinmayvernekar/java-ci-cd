@@ -41,6 +41,8 @@ jobs:
       run: |
         # Navigate to the directory where the JAR file is located
         cd ./downloaded-jar
+
+        ls -l
         
         # Run the JAR file (adjust the JAR file name as needed)
         java -jar downloaded-jar &
