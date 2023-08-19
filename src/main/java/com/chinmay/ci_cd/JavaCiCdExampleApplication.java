@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class JavaCiCdExampleApplication {
     
     	@GetMapping 
-    	public String HELLO() {
-    	    return "HELLO GIT LAB!!!!!!!!";
+    	public Hello HELLO() {
+    	    Hello hello = new Hello();
+    	    hello.setTest("HELLO WORLD");
+    	    return hello;
     	}  
-    
+     
     
     
     
