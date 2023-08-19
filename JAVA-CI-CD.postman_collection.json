@@ -1,47 +1,46 @@
 {
-	"info": {
-		"_postman_id": "c59a8515-5f18-4e56-b56b-d9f08d453886",
-		"name": "JAVA-CI-CD",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "14992903",
-		"_collection_link": "https://crimson-star-317349.postman.co/workspace/SRK-CBS-REQUEST~feceb9f9-4fea-4c98-948c-f15e45354338/collection/14992903-c59a8515-5f18-4e56-b56b-d9f08d453886?action=share&source=collection_link&creator=14992903"
-	},
-	"item": [
-		{
-			"name": "ScriptTest",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"// Parse the response JSON\r",
-							"const responseJson = pm.response.json();\r",
-							"\r",
-							"// Check if the \"test\" field has the value \"HELLO WORLD\"\r",
-							"pm.test(\"Response has correct value for 'test'\", function () {\r",
-							"    pm.expect(responseJson.test).to.eql(\"HELLO WORLD\");\r",
-							"});\r",
-							""
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "localhost:8080/",
-					"host": [
-						"localhost"
-					],
-					"port": "8080",
-					"path": [
-						""
-					]
-				}
-			},
-			"response": []
-		}
-	]
+    "info": {
+        "_postman_id": "c59a8515-5f18-4e56-b56b-d9f08d453886",
+        "name": "JAVA-CI-CD",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+        "_exporter_id": "14992903",
+        "_collection_link": "https://crimson-star-317349.postman.co/workspace/SRK-CBS-REQUEST~feceb9f9-4fea-4c98-948c-f15e45354338/collection/14992903-c59a8515-5f18-4e56-b56b-d9f08d453886?action=share&source=collection_link&creator=14992903"
+    },
+    "item": [
+        {
+            "name": "ScriptTest",
+            "event": [
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [
+                            "// Parse the response JSON",
+                            "const responseJson = pm.response.json();",
+                            "",
+                            "// Check if the \"test\" field has the value \"HELLO WORLD\"",
+                            "pm.test(\"Response has correct value for 'test'\", function () {",
+                            "    pm.expect(responseJson.test).to.eql(\"HELLO WORLD\");",
+                            "});"
+                        ],
+                        "type": "text/javascript"
+                    }
+                }
+            ],
+            "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                    "raw": "http://localhost:8080/",
+                    "host": [
+                        "localhost"
+                    ],
+                    "port": "8080",
+                    "path": [
+                        ""
+                    ]
+                }
+            },
+            "response": []
+        }
+    ]
 }
