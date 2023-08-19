@@ -12,7 +12,7 @@ public class JavaCiCdExampleApplication {
     	@GetMapping
     	public String HELLO() {
     	    return "HELLO GIT LAB!!!!!!!!";
-    	}
+    	} 
     
     
     
