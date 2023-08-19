@@ -10,7 +10,7 @@ try:
     # Check for successful response (status code 200)
     if response.status_code == 200:
         # Check if the response content is not empty
-        if response.text:
+        if response:
             try:
                 actual_response = response.json()
                 print("API Response:", actual_response)
