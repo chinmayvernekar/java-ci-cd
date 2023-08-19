@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class JavaCiCdExampleApplication {
     
-    	@GetMapping
+    	@GetMapping 
     	public String HELLO() {
     	    return "HELLO GIT LAB!!!!!!!!";
     	} 
