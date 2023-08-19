@@ -45,7 +45,7 @@ jobs:
         ls -l
         
         # Run the JAR file (adjust the JAR file name as needed)
-        java -jar downloaded-jar &
+        java -jar Java-CI-CD-Example-0.0.1-SNAPSHOT.jar &
         sleep 10
     
     - name: Test API
