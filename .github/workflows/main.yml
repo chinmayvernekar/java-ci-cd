@@ -48,7 +48,7 @@ jobs:
         java -jar Java-CI-CD-Example-0.0.1-SNAPSHOT.jar &
         sleep 10
     
-    - name: Test API
+    #- name: Test API
       #run: python api.py
    
 
