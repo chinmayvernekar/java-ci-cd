@@ -1,4 +1,4 @@
-name: Build, Run, and Test Java Application
+name: Build, Rename, Run, and Test Java Application
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master  # Change this to your main branch name if different
 
 jobs:
-  build_run_test:
+  build_rename_run_test:
 
     runs-on: ubuntu-latest
 
@@ -25,19 +25,36 @@ jobs:
         mvn clean package
         # Adjust the Maven goals if necessary
 
-    - name: Start Local Server
+    - name: Rename JAR File
       run: |
-        java -jar ./target/your-app.jar &
-        sleep 10  # Give the server some time to start
-        # You might need to adjust the jar file name and sleep duration
+        ORIGINAL_JAR_FILE="./target/original-app.jar"
+        CUSTOM_JAR_FILE="./target/custom-app.jar"
+        
+        # Rename the JAR file (adjust the name as needed)
+        mv $ORIGINAL_JAR_FILE $CUSTOM_JAR_FILE
+        
+        # Store the custom JAR file path in an environment variable
+        echo "CUSTOM_JAR_PATH=$CUSTOM_JAR_FILE" >> $GITHUB_ENV
+
+    - name: Run Custom JAR
+      run: |
+        # Retrieve the custom JAR file path from the environment variable
+        CUSTOM_JAR_PATH="$CUSTOM_JAR_PATH"
+        
+        # Run the custom JAR file
+        java -jar $CUSTOM_JAR_PATH &
+        sleep 10
+
+    - name: Set up jq (JSON processor)
+      run: sudo apt-get install -y jq
 
     - name: Test API
       run: |
         # Replace with your API endpoint URL (localhost:8080 or any other URL)
-        API_URL="http://localhost:8080/"
+        API_URL="http://localhost:8080/some-endpoint"
         
         # Replace with the expected JSON response as a string
-        EXPECTED_RESPONSE='{HELLO GIT LAB!!!!!!!!}'
+        EXPECTED_RESPONSE='{"key":"value"}'
         
         # Make the API request and store the response in a variable
         ACTUAL_RESPONSE=$(curl -sS $API_URL)
@@ -63,4 +80,4 @@ jobs:
 
     - name: Stop Local Server
       run: |
-        pkill -f "your-app.jar" || true  # Kill the server process gracefully if running
+        pkill -f "custom-app.jar" || true  # Kill the server process gracefully if running
