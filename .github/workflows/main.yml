@@ -54,7 +54,7 @@ jobs:
         API_URL="http://localhost:8080/"
         
         # Replace with the expected JSON response as a string
-        EXPECTED_RESPONSE='{HELLO GIT LAB!!!!!!!!}'
+        EXPECTED_RESPONSE='{"message": "HELLO GIT LAB!!!!!!!!"}'
         
         # Make the API request and store the response in a variable
         ACTUAL_RESPONSE=$(curl -sS $API_URL)
