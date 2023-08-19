@@ -43,7 +43,7 @@ jobs:
         cd ./downloaded-jar
         
         # Run the JAR file (adjust the JAR file name as needed)
-        java -jar your-app.jar &
+        java -jar /home/runner/work/java-ci-cd/java-ci-cd/downloaded-jar &
         sleep 10
     
     - name: Test API
