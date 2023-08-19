@@ -1,4 +1,4 @@
-name: Build and Package Java Application
+name: Build, Run, and Test Java Application
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - master  # Change this to your main branch name if different
 
 jobs:
-  build:
+  build_run_test:
 
     runs-on: ubuntu-latest
 
@@ -25,14 +25,42 @@ jobs:
         mvn clean package
         # Adjust the Maven goals if necessary
 
-    - name: Upload JAR
-      uses: actions/upload-artifact@v2
-      with:
-        name: my-java-app  # Change this to your desired artifact name
-        path: ./target/*.jar  # Modify this to match your build output path
+    - name: Start Local Server
+      run: |
+        java -jar ./target/your-app.jar &
+        sleep 10  # Give the server some time to start
+        # You might need to adjust the jar file name and sleep duration
+
+    - name: Test API
+      run: |
+        # Replace with your API endpoint URL (localhost:8080 or any other URL)
+        API_URL="http://localhost:8080/"
+        
+        # Replace with the expected JSON response as a string
+        EXPECTED_RESPONSE='{HELLO GIT LAB!!!!!!!!}'
+        
+        # Make the API request and store the response in a variable
+        ACTUAL_RESPONSE=$(curl -sS $API_URL)
+        
+        # Use jq to pretty-print the responses for debugging (optional)
+        echo "Expected Response:"
+        echo $EXPECTED_RESPONSE | jq .
+        
+        echo "Actual Response:"
+        echo $ACTUAL_RESPONSE | jq .
+        
+        # Compare the responses using jq and fail if they don't match
+        if [ "$EXPECTED_RESPONSE" != "$ACTUAL_RESPONSE" ]; then
+          echo "API response does not match the expected input."
+          exit 1
+        fi
 
     - name: Save Maven dependencies
       uses: actions/cache@v2
       with:
         path: ~/.m2/repository
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+
+    - name: Stop Local Server
+      run: |
+        pkill -f "your-app.jar" || true  # Kill the server process gracefully if running
